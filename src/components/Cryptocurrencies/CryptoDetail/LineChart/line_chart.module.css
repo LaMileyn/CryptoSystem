@@ -1,0 +1,11 @@
+.chart_header{
+    margin-top: 50px;
+    font-family: var(--font-family-main);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.chart_header span{
+    font-weight: bold;
+    padding-right: 15px;
+}
