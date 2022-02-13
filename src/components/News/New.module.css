@@ -18,15 +18,19 @@
 .grid_items_news{
     display: grid;
     padding-top: 50px;
-    /*align-items: center;*/
     grid-template-columns: repeat(3,1fr);
     gap: 25px;
+}
+.grid_items_news a{
+    height: 100%;
 }
 .news_item{
     background-color: white;
     transition: .2s linear;
     position: relative;
+    height: 100%;
 }
+
 .news_item:hover{
     box-shadow:0px 0px 17px #bac8af;
     cursor: pointer;
@@ -35,6 +39,7 @@
     display: flex;
     align-items: center;
     padding: 20px;
+    color:black;
     font-family: var(--font-family-main);
 }
 .news_title_text{
