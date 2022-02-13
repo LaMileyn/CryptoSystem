@@ -1,0 +1,48 @@
+.section_navBar{
+    width: 300px;
+    background: #100c2f;
+    min-height: 100vh;
+}
+.title_and_logo{
+    display: flex;
+    align-items: center;
+    padding-top: 25px;
+    font-family: var(--font-family-main);
+}
+.logo{
+    width: 45px;
+    height: 45px;
+}
+.logo img{
+    width: 100%;
+    height: 100%;
+    margin-left: 13px;
+}
+.title{
+    margin-left: 25px;
+    font-size: 13px;
+    color: white;
+}
+.navigation{
+    padding-top: 50px;
+}
+.navigation ul li{
+    padding: 15px 25px;
+    border-radius: 1px;
+    display: flex;
+    align-items: center;
+    transition: background-color .1s linear;
+    font-family: var(--font-family-main);
+}
+.navigation ul li:hover{
+    background-color: rgba(0,0,0,.2);
+}
+.linkNav img{
+    width: 25px;
+    height: 25px;
+}
+.linkNav span{
+    margin-left: 15px;
+    color: white;
+    text-decoration: none;
+}

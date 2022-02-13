@@ -1,0 +1,40 @@
+.StatsTypes{
+    padding-top: 25px;
+}
+.title_main{
+    font-family: var(--font-family-main);
+    font-size: var(--font-size-main);
+}
+.StatsTypes ul{
+    display: flex;
+    flex-wrap: wrap;
+}
+.StatsTypes ul li{
+    flex-basis: 50%;
+    font-family: var(--font-family-main);
+    margin-bottom: 20px;
+}
+.title_type{
+    color: dimgrey;
+    padding-bottom: 10px;
+}
+.amount_type{
+    font-size: 20px;
+    margin-top: 15px;
+}
+
+/* HERE TOP 10 CRYPTO*/
+.new_section{
+    padding-top: 20px;
+}
+.section_top_text{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.link_to_all{
+    font-family: var(--font-family-main);
+    color: #100c2f;
+    font-size: 20px;
+
+}
