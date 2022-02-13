@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {useGetCryptoDetailsQuery} from "../../../services/CryptoApi";
+import {useGetCryptoDetailsQuery, useGetCryptosHistoryQuery} from "../../../services/CryptoApi";
 import {useParams} from "react-router-dom";
 import {
     DollarCircleOutlined,
@@ -14,12 +14,17 @@ import {
 import millify from "millify";
 import s from './CryptoDetail.module.css'
 import HTMLReactParser from "html-react-parser";
+import LineChart from "./LineChart/LineChart";
 
 const CryptoDetail = () => {
     const {cryptoId} = useParams()
+    const [timePeriod, setTimePeriod] = useState('7d')
     const {data, isFetching} = useGetCryptoDetailsQuery(cryptoId)
+    // console.log(timePeriod)
+    const {data: coinHistory} = useGetCryptosHistoryQuery({cryptoId, timePeriod})
     const cryptoDetails = data?.data?.coin;
-    // console.log(cryptoDetails)
+    if (isFetching) return 'Loading......'
+    // console.log(coinHistory)
     const times = ['3h', '24h', '7d', '30d', '1y', '3m', '3y', '5y']
     const stats = [
         {
@@ -67,8 +72,6 @@ const CryptoDetail = () => {
             icon: <ExclamationCircleOutlined/>
         }
     ]
-    const [time, setTime] = useState()
-
     return (
         <>
             {
@@ -78,8 +81,8 @@ const CryptoDetail = () => {
                             <h1>{cryptoDetails?.name} price</h1>
                             <p>{cryptoDetails?.name} live price in US dollars. View value statisticks, market cap and
                                 supply</p>
-                            <select placeholder="Select a time period" value={time}
-                                    onChange={(e) => setTime(e.currentTarget.value)}>
+                            <select placeholder="Select a time period" value={timePeriod}
+                                    onChange={(e) => setTimePeriod(e.currentTarget.value)}>
                                 <option value="7d">7d</option>
                                 {
                                     times.map((el, index) => {
@@ -88,6 +91,8 @@ const CryptoDetail = () => {
                                 }
                             </select>
                         </div>
+                        <LineChart coinHistory={coinHistory} currentPrice={cryptoDetails && millify(cryptoDetails.price)}
+                                   coinName={cryptoDetails && cryptoDetails.name}/>
                         <div className={s.statistics}>
                             <div className={s.statistics_content}>
                                 <div className={s.statistics}>
@@ -127,7 +132,7 @@ const CryptoDetail = () => {
                             {HTMLReactParser(cryptoDetails.description)}
                             <div className={s.links}>
                                 <h1>{cryptoDetails.name} links</h1>
-                                {cryptoDetails.links.map( link => {
+                                {cryptoDetails.links.map(link => {
                                     return (
                                         <div className={s.coin_link}>
                                             <span>{link.type}</span>
